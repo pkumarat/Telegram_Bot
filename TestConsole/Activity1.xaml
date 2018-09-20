@@ -1,0 +1,149 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="TestConsole.Activity1" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="TestConsole.Activity1_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sn="clr-namespace:System.Net;assembly=System"
+ xmlns:ss="clr-namespace:System.Security;assembly=mscorlib"
+ xmlns:t="clr-namespace:Telegram;assembly=Telegram.Activities"
+ xmlns:t1="clr-namespace:Telegram;assembly=Telegram"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Http</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>Telegram.Activities.Design</AssemblyReference>
+      <AssemblyReference>Telegram.Activities</AssemblyReference>
+      <AssemblyReference>Telegram</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>RestSharp</AssemblyReference>
+      <AssemblyReference>Telegram.Bot</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>TestConsole</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ss:SecureString" Name="token">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="ss:SecureString">new NetworkCredential(String.Empty, "627469880:AAHiiSpBTl_u9EX2wT9r94VdRn0CmWthfWk").SecurePassword</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="sn:NetworkCredential" Name="variable1" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="Msg_Arr" />
+      <Variable x:TypeArguments="x:String" Name="variable2" />
+    </Sequence.Variables>
+    <t:TelegramAppScope sap2010:WorkflowViewState.IdRef="TelegramAppScope_1">
+      <t:TelegramAppScope.Body>
+        <ActivityAction x:TypeArguments="t1:TelegramProp">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="t1:TelegramProp" Name="telegramDetails" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Execute Telegram activities" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <t:SendMessage ChatID="599669398" sap2010:WorkflowViewState.IdRef="SendMessage_2" MessageText="Hi, Message from Bot" />
+            <t:SendPhoto Image_Text="{x:Null}" ChatID="599669398" sap2010:WorkflowViewState.IdRef="SendPhoto_2">
+              <t:SendPhoto.PhotoPath>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">"D:\\Images\\DXC.jpg"</mca:CSharpValue>
+                </InArgument>
+              </t:SendPhoto.PhotoPath>
+            </t:SendPhoto>
+            <t:GetUpdates sap2010:WorkflowViewState.IdRef="GetUpdates_1">
+              <t:GetUpdates.Str_arr>
+                <OutArgument x:TypeArguments="scg:List(x:String)">
+                  <mca:CSharpReference x:TypeArguments="scg:List(x:String)">Msg_Arr</mca:CSharpReference>
+                </OutArgument>
+              </t:GetUpdates.Str_arr>
+            </t:GetUpdates>
+            <ForEach x:TypeArguments="x:String" DisplayName="ForEach&lt;String&gt;">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">Msg_Arr</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                </ActivityAction.Argument>
+                <WriteLine>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">"New messages : " + item</mca:CSharpValue>
+                  </InArgument>
+                  <sap2010:WorkflowViewState.IdRef>WriteLine_1</sap2010:WorkflowViewState.IdRef>
+                </WriteLine>
+              </ActivityAction>
+              <sap2010:WorkflowViewState.IdRef>ForEach`1_1</sap2010:WorkflowViewState.IdRef>
+            </ForEach>
+          </Sequence>
+        </ActivityAction>
+      </t:TelegramAppScope.Body>
+      <t:TelegramAppScope.BotToken>
+        <InArgument x:TypeArguments="ss:SecureString">
+          <mca:CSharpValue x:TypeArguments="ss:SecureString">token</mca:CSharpValue>
+        </InArgument>
+      </t:TelegramAppScope.BotToken>
+    </t:TelegramAppScope>
+    <sads:DebugSymbol.Symbol>d0JDOlxVc2Vyc1xwa3VtYXJhdFxzb3VyY2VccmVwb3NcVGVsZWdyYW1cVGVzdENvbnNvbGVcQWN0aXZpdHkxLnhhbWwRNQNzDgIBATkLObMBAgECQAVxGgIBB24LblUCASpGC2kWAgEIRw1HhAECASdIDU4bAgEfTw1VHAIBGFYNaBcCAQlHa0eBAQIBKUcjRy4CAShLE0tmAgEhSDdIQgIBIFITUmoCARlZE1lpAgESYBFlHQIBCmIVYmsCAQs=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="SendMessage_2" sap:VirtualizedContainerService.HintSize="287,22" />
+      <sap2010:ViewStateData Id="SendPhoto_2" sap:VirtualizedContainerService.HintSize="287,22" />
+      <sap2010:ViewStateData Id="GetUpdates_1" sap:VirtualizedContainerService.HintSize="287,22" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="211,62" />
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="287,212" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="309,522">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TelegramAppScope_1" sap:VirtualizedContainerService.HintSize="414,649">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="436,787">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TestConsole.Activity1_1" sap:VirtualizedContainerService.HintSize="476,867" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
