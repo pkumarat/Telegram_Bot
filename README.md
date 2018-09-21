@@ -35,7 +35,7 @@ In this activity Telegram Bot sends Images or pictures instantly to users or pub
 ## Get Updates
 In this activity Telegram Bot receives the text messages sent by the private user and users in group.
 
-###Output fields
+### Output fields
 - Message List - Gives output of text messages in a list of strings. It's type is **List**<**String**>.
   - *Example: Message List = Msg_array (Variable Of type List of String)*
   
