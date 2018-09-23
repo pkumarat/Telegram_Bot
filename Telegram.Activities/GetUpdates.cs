@@ -13,7 +13,8 @@ using System.Collections.Generic;
 
 namespace Telegram
 {
-
+    [DisplayName("Receive Message")]
+    [Description("Receives all the messages sent to Telegram Bot")]
     public sealed class GetUpdates : CodeActivity
     {
 
@@ -60,7 +61,20 @@ namespace Telegram
 
             Str_arr.Set(context, Msg_arr);
 
-            var update_new = botClient.GetUpdatesAsync(offset = offset_new).GetAwaiter().GetResult();
+            //var update_new = botClient.GetUpdatesAsync(offset = offset_new).GetAwaiter().GetResult();
+            try
+            {
+                var update_new = botClient.GetUpdatesAsync(offset = offset_new).GetAwaiter().GetResult();
+            }
+            catch (Telegram.Bot.Exceptions.ApiRequestException)
+            {
+                throw new Exception("Input Bot Token - Represents an API error");
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new Exception("Telegram Send Message Failed, Exception:" + ex.Message);
+            }
 
         }
 

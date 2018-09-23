@@ -17,20 +17,23 @@ using System.Linq;
 
 namespace Telegram
 {
-
+    [DisplayName("Send Image")]
+    [Description("Sends Image from Telegram Bot to user or group")]
     public sealed class SendPhoto : CodeActivity
     {
         // Define an activity input argument of type string
         [Category("Input")]
         [DisplayName("Chat ID")]
+        [RequiredArgument]
         [Description("Enter Chat_ID to which bot sends the image")]
-        public InArgument<Int64> ChatID { get; set; }
+        public InArgument<Int64> Chat_ID { get; set; }
 
         // Define an activity input argument of type string
         [Category("Input")]
         [DisplayName("Image Path ")]
+        [RequiredArgument]
         [Description("Enter the Path where the Photo resides")]
-        public InArgument<string> PhotoPath { get; set; }
+        public InArgument<string> Image_Path { get; set; }
 
         // Define an activity input argument of type string
         [Category("Input")]
@@ -54,12 +57,12 @@ namespace Telegram
 
             var botToken = telegramDetails.authToken;
 
-            var photopath = PhotoPath.Get(context);
+            var photopath = Image_Path.Get(context);
 
             if (photopath == null)
-                throw new ArgumentException("Photo-Path missing");
+                throw new ArgumentException("Photo Path missing");
 
-            var chatID = ChatID.Get(context);
+            var chatID = Chat_ID.Get(context);
 
             var chatID_str = Convert.ToString(chatID);
 
@@ -69,7 +72,7 @@ namespace Telegram
             var image_text = Image_Text.Get(context);
 
             if (image_text == null)
-                image_text = "Image sent from Bot";
+                image_text = "";
 
             var botClient = new TelegramBotClient(botToken);
             
@@ -77,11 +80,35 @@ namespace Telegram
 
             var fileName = file.Split(Path.DirectorySeparatorChar).Last();
 
-            using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+            //using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+            //{
+            //    Message Photo = botClient.SendPhotoAsync(chatID, fileStream, image_text).GetAwaiter().GetResult();
+            //}
+            try
             {
-                Message Photo = botClient.SendPhotoAsync(chatID, fileStream, image_text).GetAwaiter().GetResult();
+                using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    Message Photo = botClient.SendPhotoAsync(chatID, fileStream, image_text).GetAwaiter().GetResult();
+                }
             }
-            
+            catch (Telegram.Bot.Exceptions.ChatNotFoundException)
+            {
+                throw new Exception("Input Chat_ID " + chatID_str + "does not exist");
+            }
+            catch (Telegram.Bot.Exceptions.ChatNotInitiatedException)
+            {
+                throw new Exception("Input Chat_ID " + chatID_str + " has not yet initiated a chat with bot yet");
+            }
+            catch (Telegram.Bot.Exceptions.ApiRequestException)
+            {
+                throw new Exception("Input Bot Token - Represents an API error");
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new Exception("Telegram Send Image Failed, Exception:" + ex.Message);
+            }
+
         }
     }
 }
