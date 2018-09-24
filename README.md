@@ -45,8 +45,12 @@ In this activity Telegram Bot receives the text messages sent by the private use
   - *Example: Message List = Msg_array (Variable Of type List of String)*
   
 
-### Note:
-Process to Get your Telegram chat ID
+## Note:
+
+### For Creating a Bot in Telegram Mobile application and obtaining a Token number for it.Please refer below link
+  - https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-telegram?view=azure-bot-service-4.0
+
+## Process to Get your Telegram chat ID
 
 1. Paste the following link in your browser. Replace <API-access-token> with the API access token that you identified or created in the previous section:
   
