@@ -5,9 +5,14 @@ In order to use these activities they must be placed or enclosed within "Telegra
 Pre-requisites - Telegram Bot must be created using BotFather and the user must have the Token in order to communicate with other groups or users.
 
 ## Activities
-1. Send Message
-2. Send Photo
-3. Get Updates
+1. Telegram Connector scope
+2. Send Message
+3. Send Image
+4. Receive Message
+ 
+## Telegram Connector scope
+This is the parent activity within which all the below child activities **Send Message**, **Send Image** and **Receive message** can be executed.
+
 
 ## Send Message
 In this activity Telegram Bot sends messages instantly to users or public group where Telegram Bot is also one of the users(of type admin).
@@ -39,3 +44,45 @@ In this activity Telegram Bot receives the text messages sent by the private use
 - Message List - Gives output of text messages in a list of strings. It's type is **List**<**String**>.
   - *Example: Message List = Msg_array (Variable Of type List of String)*
   
+
+## Note:
+
+### For Creating a Bot in Telegram Mobile application and obtaining a Token number for it.Please refer below link
+  - https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-telegram?view=azure-bot-service-4.0
+
+## Process to Get your Telegram chat ID
+
+1. Paste the following link in your browser. Replace <API-access-token> with the API access token that you identified or created in the previous section:
+  
+https://api.telegram.org/bot<API-access-token>/getUpdates?offset=0
+
+2. Send a message to your bot in the Telegram application. The message text can be anything. Your chat history must include at least one message to get your chat ID.
+
+3. Refresh your browser.
+
+4. Identify the numerical chat ID by finding the id inside the chat JSON object. In the example below, the chat ID is **123456789**.
+
+{  
+   "ok":true,
+   "result":[  
+      {  
+         "update_id":XXXXXXXXX,
+         "message":{  
+            "message_id":2,
+            "from":{  
+               "id":**123456789**,
+               "first_name":"Mushroom",
+               "last_name":"Kap"
+            },
+            "chat":{  
+               "id":**123456789**,
+               "first_name":"Mushroom",
+               "last_name":"Kap",
+               "type":"private"
+            },
+            "date":1487183963,
+            "text":"hi"
+         }
+      }
+   }
+}
