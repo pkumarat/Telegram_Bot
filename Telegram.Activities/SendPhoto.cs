@@ -105,7 +105,6 @@ namespace Telegram
             }
             catch (System.Exception ex)
             {
-
                 throw new Exception("Telegram Send Image Failed, Exception:" + ex.Message);
             }
 

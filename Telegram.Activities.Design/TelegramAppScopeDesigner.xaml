@@ -36,7 +36,7 @@
                         Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" ExpressionType="s:String" Grid.Row="0" Grid.Column="1" 
                         OwnerActivity="{Binding Path=ModelItem}" Margin="0,5" MaxLines="1" />-->
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="2" Margin="5,5,0,5" Text="BotToken: " Width="55" Height="16" />
-                        <sapv:ExpressionTextBox HintText="Enter Telegram bot token here" Expression="{Binding Path=ModelItem.BotToken, Mode=TwoWay, 
+                        <sapv:ExpressionTextBox HintText="Enter the Bot Auth token" Expression="{Binding Path=ModelItem.BotToken, Mode=TwoWay, 
                         Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" ExpressionType="sec:SecureString" Grid.Row="0" Grid.Column="1" 
                         OwnerActivity="{Binding Path=ModelItem}" Margin="65,5,0,10" MaxLines="1" />
                     </Grid>
@@ -68,6 +68,7 @@
 
                 </Grid>
             </DataTemplate>
+
             <Style x:Key="ExpandOrCollapsedStyle" TargetType="{x:Type ContentPresenter}">
                 <Setter Property="ContentTemplate" Value="{DynamicResource Expanded}" />
                 <Style.Triggers>
@@ -83,4 +84,3 @@
         <ContentPresenter Style="{DynamicResource ExpandOrCollapsedStyle}" Content="{Binding}"/>
     </Grid>
 </sap:ActivityDesigner>
-

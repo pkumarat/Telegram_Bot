@@ -61,14 +61,21 @@
       <Variable x:TypeArguments="scg:List(x:String)" Name="Msg_Arr" />
       <Variable x:TypeArguments="x:String" Name="variable2" />
     </Sequence.Variables>
-    <t:TelegramAppScope sap2010:WorkflowViewState.IdRef="TelegramAppScope_1">
+    <t:TelegramAppScope sap2010:WorkflowViewState.IdRef="TelegramAppScope_3">
       <t:TelegramAppScope.Body>
         <ActivityAction x:TypeArguments="t1:TelegramProp">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="t1:TelegramProp" Name="telegramDetails" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Execute Telegram activities" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <t:SendMessage Chat_ID="1212" sap2010:WorkflowViewState.IdRef="SendMessage_1" Message_Text="Bot message 11:32" />
+          <Sequence DisplayName="Execute Telegram activities" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <t:SendMessage Chat_ID="599669398" sap2010:WorkflowViewState.IdRef="SendMessage_3" Message_Text="Hi prem new message 10.32" />
+            <t:SendPhoto Chat_ID="599669398" sap2010:WorkflowViewState.IdRef="SendPhoto_1" Image_Text="Ticket Image">
+              <t:SendPhoto.Image_Path>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String">"D:\\Images\\SnowImage.png"</mca:CSharpValue>
+                </InArgument>
+              </t:SendPhoto.Image_Path>
+            </t:SendPhoto>
             <t:GetUpdates sap2010:WorkflowViewState.IdRef="GetUpdates_1">
               <t:GetUpdates.Str_arr>
                 <OutArgument x:TypeArguments="scg:List(x:String)">
@@ -76,6 +83,23 @@
                 </OutArgument>
               </t:GetUpdates.Str_arr>
             </t:GetUpdates>
+            <ForEach x:TypeArguments="x:String" DisplayName="ForEach&lt;String&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_1">
+              <ForEach.Values>
+                <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">Msg_Arr</mca:CSharpValue>
+                </InArgument>
+              </ForEach.Values>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                </ActivityAction.Argument>
+                <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1">
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">"Message to bot ==&gt; " + item</mca:CSharpValue>
+                  </InArgument>
+                </WriteLine>
+              </ActivityAction>
+            </ForEach>
           </Sequence>
         </ActivityAction>
       </t:TelegramAppScope.Body>
@@ -85,28 +109,31 @@
         </InArgument>
       </t:TelegramAppScope.BotToken>
     </t:TelegramAppScope>
-    <sads:DebugSymbol.Symbol>d0pDOlxVc2Vyc1xiamF5YXJhbWFuMjBcc291cmNlXHJlcG9zXFRlbGVncmFtX0JvdFxUZXN0Q29uc29sZVxBY3Rpdml0eTEueGFtbAo1A1kOAgEBOQs5swECAQJABVcaAgEHVAtUVQIBE0YLTxYCAQhHDUd+AgEQSA1OHAIBCUdoR3sCARJHJEcqAgERSxNLagIBCg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0VDOlxVc2Vyc1xwa3VtYXJhdFxzb3VyY2VccmVwb3NcVGVsZWdyYW1Cb3RcVGVzdENvbnNvbGVcQWN0aXZpdHkxLnhhbWwSNQNxDgIBATkLObMBAgECQAVvGgIBB2wLbFUCAStGC2cWAgEIRw1HiwECAShIDU4bAgEfTw1VHAIBGFYNZhcCAQlHbUeIAQIBKkckRy8CASlLE0tsAgEiSCJILQIBIUhnSHUCASBSE1JqAgEZWRNZaQIBEmARZB0CAQpiFWJyAgEL</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="SendMessage_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="GetUpdates_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="222,208">
+      <sap2010:ViewStateData Id="SendMessage_3" sap:VirtualizedContainerService.HintSize="287,22" />
+      <sap2010:ViewStateData Id="SendPhoto_1" sap:VirtualizedContainerService.HintSize="287,22" />
+      <sap2010:ViewStateData Id="GetUpdates_1" sap:VirtualizedContainerService.HintSize="287,22" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="211,62" />
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="287,212" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="309,522">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TelegramAppScope_1" sap:VirtualizedContainerService.HintSize="414,335" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="436,459">
+      <sap2010:ViewStateData Id="TelegramAppScope_3" sap:VirtualizedContainerService.HintSize="414,649" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="436,773">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TestConsole.Activity1_1" sap:VirtualizedContainerService.HintSize="476,539" />
+      <sap2010:ViewStateData Id="TestConsole.Activity1_1" sap:VirtualizedContainerService.HintSize="476,853" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

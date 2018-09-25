@@ -73,7 +73,7 @@ namespace Telegram
             catch (System.Exception ex)
             {
 
-                throw new Exception("Telegram Send Message Failed, Exception:" + ex.Message);
+                throw new Exception("Telegram Receive Message Failed, Exception:" + ex.Message);
             }
 
         }
