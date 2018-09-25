@@ -54,7 +54,7 @@ In this activity Telegram Bot receives the text messages sent by the private use
 
 1. Paste the following link in your browser. Replace <API-access-token> with the API access token that you identified or created in the previous section:
   
-https://api.telegram.org/bot<API-access-token>/getUpdates?offset=0
+https://api.telegram.org/bot<**API-access-token**>/getUpdates?offset=0
 
 2. Send a message to your bot in the Telegram application. The message text can be anything. Your chat history must include at least one message to get your chat ID.
 
